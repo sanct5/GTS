@@ -1,0 +1,18 @@
+#icon-logo{
+    width: 50px;
+    height: 50px;
+    flex: none;
+    flex-grow: 0;
+    color:cadetblue;
+    margin-left: 0px;
+}
+
+#icon-Search{
+    width: 25px;
+    height: 25px;
+    flex: none;
+    flex-grow: 0;
+    color:cadetblue;
+    margin-left: 0px;
+}
+
