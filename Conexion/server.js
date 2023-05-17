@@ -1,9 +1,14 @@
 const express = require('express'); 
 const mongoose = require('mongoose');
+const routes = require('./querys/routes');
 
 const app = express();  
 const port = process.env.PORT || 3001;  
 
+
+//middlewares
+
+app.use("/",routes)
 //Rutas
 app.get("/",(req,res) => {
     res.send("Servidor ejecutado");
