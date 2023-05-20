@@ -7,6 +7,7 @@ const router = express.Router();
 router.get("/getallgames",(req,res) => {
     gameSchema
     .find()
+    .limit(200)
     .then((data) => res.json(data))
     .catch((err) => res.json(err))
 })
