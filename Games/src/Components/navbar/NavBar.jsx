@@ -6,8 +6,8 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import "./NavBar.css"
 
-function NavBar({laBusqueda}) {
-  // Use state que alamcena los parametros de busqueda 
+function NavBar({ setJuegosBusqueda }) {
+  // Use state que almacena los parametros de busqueda 
   const [search, setSearch] = useState({
     tipo:"",
     busqueda:"",
@@ -24,24 +24,28 @@ function NavBar({laBusqueda}) {
   //------------------ HandleSubmit que utiliza los parametros de busqueda ----------------//
   const handleSubmit = () => {
     // Realiza la búsqueda según la opción seleccionada en el campo de búsqueda
-    if (search.tipo.trim() === '' || search.busqueda.trim() === '') {
-      toast.error("Debe seleccionar un filtro y escribir en el campo de búsqueda");
-        return
-      } else if (search.tipo === 'name') {
-      // Realiza la búsqueda por nombre
-      fetch(`http://localhost:3001/api/getpornombre/${search.busqueda}`)
-        .then(res => res.json())
-        .then(data => laBusqueda(data))
-        .catch(error => console.error('Error:', error));
-      } else {
-      // Realiza la búsqueda por desarrollador
-      fetch(`http://localhost:3001/api/getpordesarrollador/${search.busqueda}`)
-        .then(res => res.json())
-        .then(data => laBusqueda(data))
-        .catch(error => console.error('Error:', error));
+    if(search.tipo.trim() === "" || search.busqueda === ""){
+      toast.error("Debe seleccionar un filtro y escribir en el cuadro de busqueda")
+      return
+      }else{
+        if (search.tipo === 'name') {
+          // Realiza la búsqueda por nombre
+          fetch(`http://localhost:3001/api/getpornombre/${search.busqueda}`)
+            .then(res => res.json())
+            .then(data => {setJuegosBusqueda(data); // Asignar datos a juegosNombre
+            })
+            .catch(error => console.error('Error:', error));
+        } else {
+          // Realiza la búsqueda por desarrollador
+          fetch(`http://localhost:3001/api/getpordesarrollador/${search.busqueda}`)
+            .then(res => res.json())
+            .then(data => {
+              setJuegosBusqueda(data); // Asignar datos a juegosDesarrollador
+            })
+            .catch(error => console.error('Error:', error));
+          } 
+        }
       }
-      
-    }
 
     //Html del componente
     return (

@@ -15,8 +15,8 @@ function App() {
 
     // -------------- Use states para los filtros -----------------//
 
-  const [juegosNombre, setJuegosNombre] = useState([])
-  const [juegosDesarrollador, setJuegosDesarrollador] = useState([])
+  const [juegosBusqueda, setJuegosBusqueda] = useState([])
+  console.log(juegosBusqueda)
 
   //------------------------- Peticiones fecht al server de express para filtos preestablecidos -------------------//
   useEffect( () => {
@@ -67,17 +67,25 @@ function App() {
   //---------------------------------- Html del componente -------------------------------//
   return (
     <div>
-      <NavBar/>
+      <NavBar setJuegosBusqueda={setJuegosBusqueda} />
       <div className="grid-container">
-        <Routes>
-          <Route path="/" element={juegos.map((juego) => ( <GameCard key={juego._id} juego={juego} /> ))}/>
-            <Route path="/mejorvotados" element={juegosVotados.map((juego) => ( <GameCard key={juego._id} juego={juego} /> ))}/>
-            <Route path="/masdescargados" element={juegosDescargados.map((juego) => ( <GameCard key={juego._id} juego={juego} /> ))}/>
-            <Route path="/masrecientes" element={juegosRecientes.map((juego) => ( <GameCard key={juego._id} juego={juego} /> ))}/>
-            <Route path="/masdisponibles" element={juegosDisponibles.map((juego) => ( <GameCard key={juego._id} juego={juego} /> ))}/>
-            <Route path="/filtrarnombre" element={juegosNombre.map((juego) => ( <GameCard key={juego._id} juego={juego} /> ))}/>
-            <Route path="/filtrardesarrollador" element={juegosDesarrollador.map((juego) => ( <GameCard key={juego._id} juego={juego} /> ))}/>
-          </Routes>
+      <Routes>
+          {juegosBusqueda.length > 0 ? (<Route path="/" element={juegosBusqueda.map((juego) => (<GameCard key={juego._id} juego={juego} />))}/>)
+          : (<Route path="/" element={juegos.map((juego) => (<GameCard key={juego._id} juego={juego} />))}/>)}
+
+          {juegosBusqueda.length > 0 ? (<Route path="/mejorvotados" element={juegosBusqueda.map((juego) => (<GameCard key={juego._id} juego={juego} />))}/>)
+          : (<Route path="/mejorvotados" element={juegosVotados.map((juego) => (<GameCard key={juego._id} juego={juego} />))}/>)}
+
+          {juegosBusqueda.length > 0 ? (<Route path="/masdescargados" element={juegosBusqueda.map((juego) => (<GameCard key={juego._id} juego={juego} />))}/>)
+          : (<Route path="/masdescargados" element={juegosDescargados.map((juego) => ( <GameCard key={juego._id} juego={juego} />))}/>)}
+
+          {juegosBusqueda.length > 0 ? (<Route path="/masdisponibles" element={juegosBusqueda.map((juego) => (<GameCard key={juego._id} juego={juego} />))}/>)
+          : (<Route path="/masdisponibles" element={juegosDisponibles.map((juego) => (<GameCard key={juego._id} juego={juego} />))}/>)}
+
+          {juegosBusqueda.length > 0 ? (<Route path="/masrecientes" element={juegosBusqueda.map((juego) => (<GameCard key={juego._id} juego={juego} />))}/>)
+          : (<Route path="/masrecientes" element={juegosRecientes.map((juego) => (<GameCard key={juego._id} juego={juego} />))}/>)}
+          
+        </Routes>
       </div>
     </div>
   );

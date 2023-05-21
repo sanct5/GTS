@@ -14,3 +14,14 @@
     width: fit-content;
     height: fit-content;
 }
+body {
+    background-color: #222f3e; /* Cambia el color a tu elección de azul oscuro */
+    margin: 0;
+    padding: 0;
+  }
+  
+  /* Si tienes un contenedor principal, puedes aplicar el estilo a ese elemento en su lugar */
+  .container {
+    background-color: #222f3e; /* Cambia el color a tu elección de azul oscuro */
+  }
+  

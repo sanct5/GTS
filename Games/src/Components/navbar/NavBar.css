@@ -15,3 +15,18 @@
     color:cadetblue;
     margin-left: 0px;
 }
+
+#icon-logo {
+    font-weight: bold;
+}
+
+#icon-Search {
+    font-weight: bold;
+}
+
+.navbar{
+    position:fixed;
+    top:0;
+    width: 100%;
+    z-index: 999;
+}

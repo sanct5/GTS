@@ -53,22 +53,26 @@ router.get("/getmasdisponibles", (req, res) => {
 });
 
 //---------------------------- Filtros ---------------------------------------//
-
+//Obtener juegos filtrados por nombre
 router.get("/getpornombre/:name", (req, res) => {
     const name = req.params.name;
-    gameSchema.find({ name: { $regex: name, $options: 'i' } })
-    .limit(200)
-    .then((data) => res.json(data))
-    .catch((err) => res.json(err));
-});
+    const regex = new RegExp(`^${name}`, "i");
+    gameSchema
+        .find({ name: regex })
+        .limit(200)
+        .then((data) => res.json(data))
+        .catch((err) => res.json(err));
+});  
 
 //Obtener juegos filtrados por desarrollador
 router.get("/getpordesarrollador/:developer", (req, res) => {
     const developer = req.params.developer;
-    gameSchema.find({ developer: { $regex: developer, $options: 'i' } })
-    .limit(200)
-    .then((data) => res.json(data))
-    .catch((err) => res.json(err));
+    const regex = new RegExp(`^${developer}`, "i");
+    gameSchema
+        .find({ developer: regex })
+        .limit(200)
+        .then((data) => res.json(data))
+        .catch((err) => res.json(err));
 });
 
 module.exports = router;
