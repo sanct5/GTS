@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import "./app.css"
 
 function App() {
+
   // -------------- Use states para los filtros preestablecidos -----------------//
   const [juegos, setJuegos] = useState([])
   const [juegosVotados, setJuegosVotados] = useState([])
@@ -62,27 +63,6 @@ function App() {
     }
     getJuegosDisponibles()
   },[])
-
-  //------------------------- Peticiones fecht al server de express para filtos -------------------//
-
-  useEffect( () => {
-    const getJuegosNombre = () => {
-        fetch(`http://localhost:3001/api/getpornombre`)
-        .then(res => res.json())
-        .then(res => setJuegosNombre(res))
-    }
-    getJuegosNombre()
-  },[])
-
-  useEffect( () => {
-    const getJuegosDesarrollador = () => {
-        fetch(`http://localhost:3001/api/getpordesarrollador`)
-        .then(res => res.json())
-        .then(res => setJuegosDesarrollador(res))
-    }
-    getJuegosDesarrollador()
-  },[])
-
 
   //---------------------------------- Html del componente -------------------------------//
   return (
