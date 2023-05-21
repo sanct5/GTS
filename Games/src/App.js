@@ -5,16 +5,19 @@ import { useState, useEffect } from "react";
 import "./app.css"
 
 function App() {
-  // Use effects y peticiones para los filtros preestablecidos
+  // -------------- Use states para los filtros preestablecidos -----------------//
   const [juegos, setJuegos] = useState([])
   const [juegosVotados, setJuegosVotados] = useState([])
   const [juegosDescargados, setDescargados] = useState([])
   const [juegosRecientes, setRecientes] = useState([])
   const [juegosDisponibles, setDisponibles] = useState([])
+
+    // -------------- Use states para los filtros -----------------//
+
   const [juegosNombre, setJuegosNombre] = useState([])
   const [juegosDesarrollador, setJuegosDesarrollador] = useState([])
 
-  //Peticiones fecht al server de express
+  //------------------------- Peticiones fecht al server de express para filtos preestablecidos -------------------//
   useEffect( () => {
       const getJuegos = () => {
           fetch(`http://localhost:3001/api/getallgames`)
@@ -60,6 +63,8 @@ function App() {
     getJuegosDisponibles()
   },[])
 
+  //------------------------- Peticiones fecht al server de express para filtos -------------------//
+
   useEffect( () => {
     const getJuegosNombre = () => {
         fetch(`http://localhost:3001/api/getpornombre`)
@@ -79,7 +84,7 @@ function App() {
   },[])
 
 
-  //Html del componente
+  //---------------------------------- Html del componente -------------------------------//
   return (
     <div>
       <NavBar/>

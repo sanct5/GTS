@@ -3,6 +3,8 @@ const gameSchema = require("./model");
 
 const router = express.Router();
 
+//--------------------------------- Filtros preestablecidos --------------------------------//
+
 //Obtener todos los juegos de la base de datos
 router.get("/getallgames",(req,res) => {
     gameSchema
@@ -47,6 +49,26 @@ router.get("/getmasdisponibles", (req, res) => {
     gameSchema
     .find({ "platforms.windows": true, "platforms.mac": true, "platforms.linux": true })
     .limit(200)
+    .then((data) => res.json(data))
+    .catch((err) => res.json(err));
+});
+
+//---------------------------- Filtros ---------------------------------------//
+
+//Obtener juegos filtrados por nombre
+router.get("/getpornombre", (req, res) => {
+    gameSchema
+    .find()
+    .limit(1)
+    .then((data) => res.json(data))
+    .catch((err) => res.json(err));
+});
+
+//Obtener juegos filtrados por desarrollador
+router.get("/getpordesarrollador", (req, res) => {
+    gameSchema
+    .find()
+    .limit(2)
     .then((data) => res.json(data))
     .catch((err) => res.json(err));
 });
